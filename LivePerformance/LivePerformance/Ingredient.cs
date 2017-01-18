@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace LivePerformance
 {
-    public class Ingredienten
+    public class Ingredient
     {
         public string Naam { get; set; }
+
+        public Ingredient(string naam)
+        {
+            Naam = naam;
+        }
     }
 }

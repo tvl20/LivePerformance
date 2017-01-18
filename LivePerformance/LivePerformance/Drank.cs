@@ -8,6 +8,14 @@ namespace LivePerformance
 {
     public class Drank : Item
     {
-        public int Alcohol { get; set; }
+        public bool Alcohol { get; set; }
+
+        public Drank(string naam, int inkoopPrijs, int verkoopPrijs, bool alcohol)
+        {
+            Naam = naam;
+            InkoopPrijs = inkoopPrijs;
+            VerkoopPrijs = verkoopPrijs;
+            Alcohol = alcohol;
+        }
     }
 }
