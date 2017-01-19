@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LivePerformance.DAL;
 
 namespace LivePerformance
 {
     public partial class OverzichtBestellingForm : Form
     {
+        private BestellingBizLog bestellingRepo = new BestellingBizLog(new BestellingMSSQLrepo(new ItemMSSQLrepo()));
         private Bestelling bestelling;
 
         private void updateList()
@@ -37,7 +39,14 @@ namespace LivePerformance
 
         private void bt_AddItem_Click(object sender, EventArgs e)
         {
-
+            AddItemForm frm2 = new AddItemForm();
+            frm2.ShowDialog();
+            if (frm2.ToAddItem != null)
+            {
+                bestelling.Items.Add(frm2.ToAddItem);
+                bestellingRepo.AddItem(bestelling.ID, frm2.ToAddItem);
+            }
+            updateList();
         }
     }
 }

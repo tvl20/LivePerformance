@@ -13,5 +13,6 @@ namespace LivePerformance.DAL
         List<Klant> GetKlanten();
         List<Bestelling> GetBestellingen();
         void NewBestelling(Klant klant = null);
+        void AddItem(int bestellingID, Item item);
     }
 }

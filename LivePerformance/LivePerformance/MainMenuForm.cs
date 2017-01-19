@@ -50,7 +50,8 @@ namespace LivePerformance
         {
             if (lb_Bestellingen.SelectedItem != null)
             {
-                
+                OverzichtBestellingForm frm2 = new OverzichtBestellingForm((Bestelling) lb_Bestellingen.SelectedItem);
+                frm2.ShowDialog();
             }
             else
             {

@@ -34,5 +34,10 @@ namespace LivePerformance.DAL
         {
             return repo.GetKlanten();
         }
+
+        public void AddItem(int bestellingID, Item item)
+        {
+            repo.AddItem(bestellingID, item);
+        }
     }
 }

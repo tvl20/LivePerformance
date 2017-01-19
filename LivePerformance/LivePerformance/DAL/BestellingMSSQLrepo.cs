@@ -91,6 +91,7 @@ namespace LivePerformance.DAL
 
             foreach (Bestelling bestelling in returnList)
             {
+                bestelling.Items = new List<Item>();
                 List<int> pizzaIDs = new List<int>();
                 List<int> saladeIDs = new List<int>();
                 List<int> drankenIDs = new List<int>();
@@ -186,6 +187,37 @@ namespace LivePerformance.DAL
                         cmd.Parameters.Add("klantID", SqlDbType.Int).Value = DBNull.Value;
                     }
                     cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void AddItem(int bestellingID, Item item)
+        {
+            Type t = item.GetType();
+            string query = "";
+            if (t == typeof(Drank))
+            {
+                query = "INSERT INTO DrankItems (BestellingID, DrankID) VALUES (@bestellingID, @itemID)";
+            } else if (t == typeof(Salade))
+            {
+                query = "INSERT INTO SaladeItems (BestellingID, SaladeID) VALUES (@bestellingID, @itemID)";
+            } else if (t == typeof(Pizza))
+            {
+                query = "INSERT INTO PizzaItems (BestellingID, PizzaID) VALUES (@bestellingID, @itemID)";
+            }
+
+            if (query.Length > 0)
+            {
+                using (SqlConnection connection = new SqlConnection(conn))
+                {
+                    connection.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        cmd.Connection = connection;
+                        cmd.Parameters.Add("@bestellingID", SqlDbType.Int).Value = bestellingID;
+                        cmd.Parameters.Add("@itemID", SqlDbType.Int).Value = item.ID;
+                        cmd.ExecuteNonQuery();
+                    }
                 }
             }
         }
