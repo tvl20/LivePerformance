@@ -54,6 +54,7 @@ namespace LivePerformance.DAL
 
             foreach (Pizza pizza in returnList)
             {
+                pizza.Ingredienten = new List<Ingredient>();
                 using (SqlConnection connection = new SqlConnection(conn))
                 {
                     connection.Open();

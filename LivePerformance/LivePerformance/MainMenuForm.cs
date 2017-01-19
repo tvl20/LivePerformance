@@ -64,9 +64,8 @@ namespace LivePerformance
             if (lb_Bestellingen.SelectedItem != null)
             {
                 Bestelling bestelling = (Bestelling)lb_Bestellingen.SelectedItem;
-                //de bon word naar C:\Bon geschreven
                 
-                StreamWriter sw = new StreamWriter(@"C:\Bon.txt");
+                StreamWriter sw = new StreamWriter(@"C:\Bon.txt"); //pas dit aan als het niet werkt, kan zijn dat het programma geen access heeft (bij mij niet het geval)
                 sw.WriteLine("Pizzeria La Crosta Insapore");
                 if (bestelling.Klant != null)
                 {
