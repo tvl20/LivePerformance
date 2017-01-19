@@ -127,7 +127,7 @@
             this.Controls.Add(this.bt_SelectKlant);
             this.Controls.Add(this.lb_Klanten);
             this.Name = "NieuwBestellingForm";
-            this.Text = "NieuwBestellingForm";
+            this.Text = "Nieuwe bestelling maken";
             this.ResumeLayout(false);
             this.PerformLayout();
 

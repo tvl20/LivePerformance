@@ -124,7 +124,7 @@
             this.Controls.Add(this.rbtn_StandaardPizza);
             this.Controls.Add(this.lb_Items);
             this.Name = "AddItemForm";
-            this.Text = "AddItem";
+            this.Text = "Item toevoegen aan bestelling";
             this.ResumeLayout(false);
             this.PerformLayout();
 

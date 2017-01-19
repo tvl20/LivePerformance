@@ -117,7 +117,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lb_Bestellingen);
             this.Name = "MainMenuForm";
-            this.Text = "Form1";
+            this.Text = "Hoofdmenu";
             this.ResumeLayout(false);
             this.PerformLayout();
 

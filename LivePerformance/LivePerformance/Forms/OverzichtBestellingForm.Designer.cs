@@ -104,7 +104,7 @@
             this.Controls.Add(this.lb_ItemsBestelling);
             this.Controls.Add(this.label1);
             this.Name = "OverzichtBestellingForm";
-            this.Text = "OverzichtBestellingForm";
+            this.Text = "Overzicht van de bestelling";
             this.ResumeLayout(false);
             this.PerformLayout();
 

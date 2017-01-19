@@ -100,7 +100,7 @@
             this.Controls.Add(this.bt_AddKlant);
             this.Controls.Add(this.label1);
             this.Name = "NieuwKlantForm";
-            this.Text = "NieuwKlant";
+            this.Text = "Nieuwe klant toevoegen";
             this.ResumeLayout(false);
             this.PerformLayout();
 
