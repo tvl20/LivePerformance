@@ -12,5 +12,8 @@ namespace LivePerformance.DAL
         List<Pizza> GetPizzas();
         List<Salade> GetSalades();
         List<Drank> GetDranken();
+        Pizza GetPizzaByID(int id);
+        Salade GetSaladeByID(int id);
+        Drank GetDrankByID(int id);
     }
 }

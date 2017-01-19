@@ -9,10 +9,12 @@ namespace LivePerformance
     public class Ingredient
     {
         public string Naam { get; set; }
+        public int ID { get; set; }
 
-        public Ingredient(string naam)
+        public Ingredient(string naam, int id)
         {
             Naam = naam;
+            ID = id;
         }
     }
 }

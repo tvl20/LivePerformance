@@ -14,5 +14,25 @@ namespace LivePerformance.DAL
         {
             this.repo = repo;
         }
+
+        public List<Ingredient> GetIngredienten()
+        {
+            return repo.GetIngredienten();
+        }
+
+        public List<Pizza> GetPizzas()
+        {
+            return repo.GetPizzas();
+        }
+
+        public List<Drank> GetDranken()
+        {
+            return repo.GetDranken();
+        }
+
+        public List<Salade> GetSalades()
+        {
+            return repo.GetSalades();
+        }
     }
 }

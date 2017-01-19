@@ -9,14 +9,15 @@ namespace LivePerformance
     public class Pizza : Item
     {
         public List<Ingredient> Ingredienten { get; set; }
-        public int ID { get; private set; }
         public string Bodem { get; set; }
         public string Vorm { get; set; }
         public int Prijs { get; set; }
+        public int Oppervlakte { get; set; }
 
-        public Pizza(int id)
+        public Pizza(int id, int oppervlakte)
         {
             ID = id;
+            Oppervlakte = oppervlakte;
         }
     }
 }

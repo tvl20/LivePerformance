@@ -11,5 +11,6 @@ namespace LivePerformance
         public string Naam { get; set; }
         public int InkoopPrijs { get; set; }
         public int VerkoopPrijs { get; set; }
+        public int ID { get; set; }
     }
 }

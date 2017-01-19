@@ -18,14 +18,14 @@ namespace LivePerformance.DAL
             using (SqlConnection connection = new SqlConnection(conn))
             {
                 connection.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT Naam FROM Ingredienten", connection))
+                using (SqlCommand cmd = new SqlCommand("SELECT Naam, IngredientID FROM Ingredienten", connection))
                 {
                     cmd.Connection = connection;
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            returnList.Add(new Ingredient(reader.GetString(0)));
+                            returnList.Add(new Ingredient(reader.GetString(0), reader.GetInt32(1)));
                         }
                     }
                 }
@@ -39,14 +39,14 @@ namespace LivePerformance.DAL
             using (SqlConnection connection = new SqlConnection(conn))
             {
                 connection.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT PizzaID FROM Pizzas", connection))
+                using (SqlCommand cmd = new SqlCommand("SELECT PizzaID, Oppervlakte FROM Pizzas", connection))
                 {
                     cmd.Connection = connection;
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            returnList.Add(new Pizza(reader.GetInt32(0)));
+                            returnList.Add(new Pizza(reader.GetInt32(0), reader.GetInt32(1)));
                         }
                     }
                 }
@@ -57,7 +57,7 @@ namespace LivePerformance.DAL
                 using (SqlConnection connection = new SqlConnection(conn))
                 {
                     connection.Open();
-                    string query = @"SELECT i.Naam, i.InkoopPrijs, i.VerkoopPrijs 
+                    string query = @"SELECT i.Naam, i.InkoopPrijs, i.VerkoopPrijs, i.IngredientID 
                                         FROM Ingredienten i
                                             INNER JOIN PizzaIngredienten p_i ON p_i.IngredientID = i.IngredientID 
                                                 WHERE p_i.PizzaID = @pizzaID;";
@@ -69,9 +69,9 @@ namespace LivePerformance.DAL
                         {
                             while (reader.Read())
                             {
-                                pizza.Ingredienten.Add(new Ingredient(reader.GetString(0)));
-                                pizza.InkoopPrijs += reader.GetInt32(1);
-                                pizza.VerkoopPrijs += reader.GetInt32(2);
+                                pizza.Ingredienten.Add(new Ingredient(reader.GetString(0), reader.GetInt32(3)));
+                                pizza.InkoopPrijs += reader.GetInt32(1) * pizza.Oppervlakte;
+                                pizza.VerkoopPrijs += reader.GetInt32(2) * pizza.Oppervlakte;
                             }
                         }
                     }
@@ -86,14 +86,14 @@ namespace LivePerformance.DAL
             using (SqlConnection connection = new SqlConnection(conn))
             {
                 connection.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT s.Naam, s.InkoopPrijs, s.VerkoopPrijs FROM Salades s", connection))
+                using (SqlCommand cmd = new SqlCommand("SELECT s.Naam, s.InkoopPrijs, s.VerkoopPrijs, s.SaladeID FROM Salades s", connection))
                 {
                     cmd.Connection = connection;
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            returnList.Add(new Salade(reader.GetString(0), reader.GetInt32(1), reader.GetInt32(2)));
+                            returnList.Add(new Salade(reader.GetString(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetInt32(3)));
                         }
                     }
                 }
@@ -107,7 +107,7 @@ namespace LivePerformance.DAL
             using (SqlConnection connection = new SqlConnection(conn))
             {
                 connection.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT d.Naam, d.InkoopPrijs, d.VerkoopPrijs, d.Alcohol FROM Dranken d", connection))
+                using (SqlCommand cmd = new SqlCommand("SELECT d.Naam, d.InkoopPrijs, d.VerkoopPrijs, d.Alcohol, d.DrankID FROM Dranken d", connection))
                 {
                     cmd.Connection = connection;
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -116,17 +116,56 @@ namespace LivePerformance.DAL
                         {
                             if (reader.GetInt32(3) == 0)
                             {
-                                returnList.Add(new Drank(reader.GetString(0), reader.GetInt32(1), reader.GetInt32(2), false));
+                                returnList.Add(new Drank(reader.GetString(0), reader.GetInt32(1), reader.GetInt32(2), false, reader.GetInt32(4)));
                             }
                             else
                             {
-                                returnList.Add(new Drank(reader.GetString(0), reader.GetInt32(1), reader.GetInt32(2), true));
+                                returnList.Add(new Drank(reader.GetString(0), reader.GetInt32(1), reader.GetInt32(2), true, reader.GetInt32(4)));
                             }
                         }
                     }
                 }
             }
             return returnList;
+        }
+
+        public Pizza GetPizzaByID(int id)
+        {
+            List<Pizza> tempList = this.GetPizzas();
+            foreach (Pizza pizza in tempList)
+            {
+                if (pizza.ID == id)
+                {
+                    return pizza;
+                }
+            }
+            return null;
+        }
+
+        public Drank GetDrankByID(int id)
+        {
+            List<Drank> tempList = this.GetDranken();
+            foreach (Drank drank in tempList)
+            {
+                if (drank.ID == id)
+                {
+                    return drank;
+                }
+            }
+            return null;
+        }
+
+        public Salade GetSaladeByID(int id)
+        {
+            List<Salade> tempList = this.GetSalades();
+            foreach (Salade salade in tempList)
+            {
+                if (salade.ID == id)
+                {
+                    return salade;
+                }
+            }
+            return null;
         }
     }
 }

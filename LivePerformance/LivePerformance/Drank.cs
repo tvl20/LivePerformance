@@ -10,12 +10,13 @@ namespace LivePerformance
     {
         public bool Alcohol { get; set; }
 
-        public Drank(string naam, int inkoopPrijs, int verkoopPrijs, bool alcohol)
+        public Drank(string naam, int inkoopPrijs, int verkoopPrijs, bool alcohol, int id)
         {
             Naam = naam;
             InkoopPrijs = inkoopPrijs;
             VerkoopPrijs = verkoopPrijs;
             Alcohol = alcohol;
+            ID = id;
         }
     }
 }

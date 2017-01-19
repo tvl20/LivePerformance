@@ -8,11 +8,12 @@ namespace LivePerformance
 {
     public class Salade : Item
     {
-        public Salade(string naam, int inkoopPrijs, int verkoopPrijs)
+        public Salade(string naam, int inkoopPrijs, int verkoopPrijs, int id)
         {
             Naam = naam;
             InkoopPrijs = inkoopPrijs;
             VerkoopPrijs = verkoopPrijs;
+            ID = id;
         }
     }
 }
