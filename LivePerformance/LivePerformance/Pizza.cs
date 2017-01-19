@@ -19,5 +19,10 @@ namespace LivePerformance
             ID = id;
             Oppervlakte = oppervlakte;
         }
+
+        public override string ToString()
+        {
+            return "Pizza, " + Convert.ToString(Prijs);
+        }
     }
 }

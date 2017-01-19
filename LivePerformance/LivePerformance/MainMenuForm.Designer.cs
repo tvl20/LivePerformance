@@ -73,6 +73,7 @@
             this.btn_PrintBon.TabIndex = 3;
             this.btn_PrintBon.Text = "Print bon";
             this.btn_PrintBon.UseVisualStyleBackColor = true;
+            this.btn_PrintBon.Click += new System.EventHandler(this.btn_PrintBon_Click);
             // 
             // btn_NieuwBestelling
             // 

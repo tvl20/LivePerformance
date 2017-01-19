@@ -7,7 +7,7 @@ using System.Windows.Forms.VisualStyles;
 
 namespace LivePerformance
 {
-    class Bestelling
+    public class Bestelling
     {
         public int ID { get; set; }
         public int Prijs { get; set; }

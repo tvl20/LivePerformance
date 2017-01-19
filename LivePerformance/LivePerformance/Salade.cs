@@ -15,5 +15,10 @@ namespace LivePerformance
             VerkoopPrijs = verkoopPrijs;
             ID = id;
         }
+
+        public override string ToString()
+        {
+            return Naam + ", " + Convert.ToString(VerkoopPrijs);
+        }
     }
 }

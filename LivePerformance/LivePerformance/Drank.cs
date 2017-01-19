@@ -18,5 +18,11 @@ namespace LivePerformance
             Alcohol = alcohol;
             ID = id;
         }
+
+        public override string ToString()
+        {
+            string str = Alcohol ? "ja" : "nee";
+            return Naam + ", bevat alcohol: " + (str) + ", " + Convert.ToString(VerkoopPrijs);
+        }
     }
 }
